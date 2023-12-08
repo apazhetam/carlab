@@ -4,16 +4,12 @@ import speech_recognition as sr
 def detect_speech():
     r = sr.Recognizer()
     
-    mic_list = sr.Microphone.list_microphone_names()
-    print("Available microphones:")
-    for index, name in enumerate(mic_list):
-        print(f"{index}: {name}")
-
-    # Select the USB PnP Sound Device, which is at index 2
-    mic_index = 0
+    # Select desired mic (find list of mics on conifgure_mic.py)
+    mic_index = 1
     mic = sr.Microphone(device_index=mic_index)
 
     # Print the name of the selected microphone
+    mic_list = sr.Microphone.list_microphone_names()
     selected_mic_name = mic_list[mic_index]
     print(f"Selected microphone: {selected_mic_name}")
 

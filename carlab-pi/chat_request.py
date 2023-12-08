@@ -15,10 +15,10 @@ class ChatGPTSession:
             'Authorization': f'Bearer {openai_api_key}'
         }
         data = {
-            'model': 'gpt-4',  # You can change the model as needed
+            'model': 'gpt-4',    # You can change the model as needed
             'messages': [{"role": "user", "content" : combined_prompt}],
             'max_tokens': 10,
-            'temperature': 0.2,  #0.17
+            'temperature': 0.2,  # 0.17
             'top_p': 0.1,
             'frequency_penalty': 0,
             'presence_penalty': 0,

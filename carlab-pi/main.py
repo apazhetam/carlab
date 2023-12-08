@@ -14,7 +14,7 @@ context = "Categorize the following commands into one of these five buckets. \
 5: Stop, no movement (S). \
 If unsure, default to Stop (S). \
 Use either one or two commands in order to accomplish any task. \
-Give me just a series of letters, for example 'FB'. Don't give any additional text."
+Return a series of letters, for example 'FB'. Don't give any additional text."
 
 def main():
     # Set initial context or model information
@@ -52,17 +52,11 @@ def main():
             except Exception as e:
                 print("An error occurred:", e)
     
-        time.sleep(5)  # Sleep while actions are being executed 
+        # time.sleep(5)  # Sleep while actions are being executed 
+        time.sleep(0.5)
+        input("Press Enter to continue...")
 
 if __name__ == "__main__":
     # print(context)
     main()
 
-
-# words = "FBRL"
-# words += "X"
-# print(words)
-# ser.write(bytes(words,'utf-8'))
-# for i in range(len(words)):
-#     ser.write(bytes(words[i],'utf-8'))
-#     time.sleep(0.1)
