@@ -10,7 +10,7 @@ def detect_speech():
         print(f"{index}: {name}")
 
     # Select the USB PnP Sound Device, which is at index 2
-    mic_index = 2
+    mic_index = 0
     mic = sr.Microphone(device_index=mic_index)
 
     # Print the name of the selected microphone
@@ -21,7 +21,7 @@ def detect_speech():
         with mic as source:
             print("\nListening...")
             r.adjust_for_ambient_noise(source)  # Adjust for ambient noise
-            audio = r.listen(source)
+            audio = r.listen(source, timeout=5, phrase_time_limit=10)
             print("Done listening!")
 
         # Recognize speech using Google Web Speech API
