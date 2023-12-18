@@ -10,13 +10,9 @@
 #define SERVO_PWM_RIGHT 250     // Fixed PWM for Right Turn
 #define SERVO_PWM_FORWARD 127   // Fixed PWM for Forward or Backward
 #define FORWARD_TIME 5          // Execution time for wait() state in seconds
-#define TURN_TIME 3          // Execution time for wait() state in seconds
-#define STATE_CLOCK_FREQ 10
-
-/*----------------------------------------------------------------------------*/
-
-#define RADIUS 0.1     // Radius of our wheel in ft
-
+#define TURN_TIME 3             // Execution time for wait() state in seconds
+#define STATE_CLOCK_FREQ 10     // State clock frequency in hz
+#define RADIUS 0.1              // Radius of our wheel in ft
 
 /*----------------------------------------------------------------------------*/
 
@@ -33,18 +29,16 @@ float PID_KD_SERVO = 0.04;
 /*----------------------------------------------------------------------------*/
 
 const uint16 MAX_TIME_16B = 65535;  // Maximum time value (16-bit timer)
-const float CLOCK_FREQ = 10000;    // Clock frequency 
-const float TARGETMOTOR = 5;       // Target speed in ft/sec
-const float TARGETSERVO = 705;     // Target time in ms to view black line
+const float CLOCK_FREQ = 10000;     // Clock frequency 
+const float TARGETMOTOR = 5;        // Target speed in ft/sec
+const float TARGETSERVO = 705;      // Target time in ms to view black line
 
 // PWM_MOTOR control range to prevent overspeeding
 const int16 MIN_PWM_MOTOR = 5;
-// const int16 MAX_PWM_MOTOR = 150;
 const int16 MAX_PWM_MOTOR = 254;
 
-// Bias for the motor PWM, found to hold the car's speed close to 4 ft/sec
+// Bias for the motor PWM, found to hold the car's speed close to 5 ft/sec
 const int16 PWM_MOTOR_BIAS = 140;
-// const int16 PWM_MOTOR_BIAS = 180;
 
 // Servo bias for initial steering addition
 const int16 PWM_SERVO_BIAS = 127;
@@ -217,7 +211,7 @@ void RaspberryFunction() {
     }
 }
 
-/* Speed Control function through hall effect sensor*/
+/* Speed Control function through hall effect sensor */
 void HallFunction() {
     uint16 currentTime;
     uint16 deltaTime;
@@ -353,7 +347,7 @@ void handleRightState(enum Statetype prevState)
 /* Implement the STOP state. */
 void handleStopState() 
 {
-    HBridge_Reg_Write(FORWARD_VAL); // To reset HBRidge to default
+    HBridge_Reg_Write(FORWARD_VAL); // To reset HBridge to default
     PWM_Servo_WriteCompare(SERVO_PWM_FORWARD);
     UART_PutString("Stopping....\r\n");
     StopMotor();
@@ -524,7 +518,6 @@ int main(void)
 
             actionsComplete = false;
         }
-
 
         // If finished previous string, then allow new input
         if (raspberrySignal) {
